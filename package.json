@@ -1,5 +1,5 @@
 {
-  "name": "react-simple-boilerplate",
+  "name": "chatty-app",
   "version": "1.0.0",
   "description": "Simple and lightweight Boilerplate for ReactJS projects",
   "scripts": {
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/noahlotzer/react-simple-boilerplate.git"
+    "url": "https://github.com/mvrdias/chatty-app.git"
   },
   "keywords": [
     "react",
@@ -22,9 +22,9 @@
   "author": "Noah-Jerome Lotzer <n.lotzer@neusta.de>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/noahlotzer/react-simple-boilerplate/issues"
+    "url": "https://github.com/mvrdias/chatty-app.git/issues"
   },
-  "homepage": "https://github.com/noahlotzer/react-simple-boilerplate",
+  "homepage": "https://github.com/mvrdias/chatty-app.git",
   "engines": {
     "node": ">=6.0.0"
   },
@@ -45,7 +45,9 @@
     "webpack-dev-server": "2.3.0"
   },
   "dependencies": {
+    "express": "4.16.2",
     "react": "15.4.2",
-    "react-dom": "15.4.2"
+    "react-dom": "15.4.2",
+    "ws": "3.2.0"
   }
 }
