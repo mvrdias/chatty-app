@@ -36,7 +36,7 @@ class ChatBar extends Component {
   keyPress(e){
     if(e.keyCode == 13){
        this.props.sendMsg(this.state.message);
-       this.setState({message: ''});
+       this.setState({message:''});
     }
   }
 
@@ -50,7 +50,7 @@ class ChatBar extends Component {
                onChange={this.onContentName} value={this.state.userName}/>
 
         <input className="chatbar-message" onKeyDown={this.keyPress}
-               onChange={this.onContent} value={this.state.message}/>
+               onChange={this.onContent} value={this.state.message} placeholder="Type a message and hit ENTER"/>
       </footer>
     );
   }

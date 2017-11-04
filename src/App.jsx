@@ -7,8 +7,10 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      currentUser: {name: "Bob"},
-      messages: []
+      type:"",
+      currentUser: {name: "Anonymous"},
+      messages: [],
+      userCounter: 0
     }
     // this.onNewMsg = this.onNewMsg.bind(this);
     this.sendMsg = this.sendMsg.bind(this);
@@ -25,21 +27,40 @@ class App extends Component {
     };
 
     this.socket.onmessage = (event) => {
-      console.log(event);
       const data = JSON.parse(event.data);
-      this.setState({messages: this.state.messages.concat(data)});
+
+      switch(data.type) {
+        case "incomingMessage":
+          this.setState({messages: this.state.messages.concat(data)});
+          break;
+        case "incomingNotification":
+          this.setState({messages: this.state.messages.concat(data)});
+          break;
+        case "counter":
+          this.setState({userCounter: data.userCounter});
+          break;
+        default:
+          throw new Error("Unknown event type " + data.type);
+      }
     };
   }
 
   sendMsg(content) {
-    const newMessage = {username: this.state.currentUser.name, content:content};
+    const newMessage = {type:"postMessage",
+                        username: this.state.currentUser.name,
+                        content:content};
     this.socket.send(JSON.stringify(newMessage));
   }
 
   changeUseName(userName){
+    var oldUserName = this.state.currentUser.name;
     this.setState({
-      currentUser: {name:userName}
+      currentUser: {name:userName},
     })
+    const newMessage = {type:"postNotification",
+                        username: this.state.currentUser.name,
+                        content: ` ${oldUserName} has changed their name to ${userName}`};
+    this.socket.send(JSON.stringify(newMessage));
   }
 
 
@@ -49,6 +70,7 @@ class App extends Component {
       <div>
         <nav className="navbar">
           <a href="/" className="navbar-brand">Chatty</a>
+          <span>User Online: {this.state.userCounter}</span>
         </nav>
         <MessageList messages={this.state.messages}/>
         <ChatBar changeUseName={this.changeUseName} sendMsg={this.sendMsg} currentUser={this.state.currentUser}/>
