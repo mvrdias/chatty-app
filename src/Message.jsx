@@ -18,7 +18,9 @@ class Message extends React.Component {
       return (
         <main className="messages">
           <div className="message">
-            <span className="message-content">{information.content}</span>
+            <b>
+              <span className="message-content-new">{information.content}</span>
+            </b>
           </div>
         </main>
       );
