@@ -10,11 +10,6 @@ body {
       margin: 70px 0;
     }
 
-    span{
-      position:relative;
-      top:25px;
-      left: 1100px;
-    }
 
     .chatbar {
       background: tomato;
@@ -80,6 +75,12 @@ body {
       position: fixed;
       right: 0;
       top: 0;
+    }
+
+    .contador {
+    position:fixed;
+    right:35px;
+    top: 22px;
     }
 
     .navbar-brand {
